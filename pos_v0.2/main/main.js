@@ -1,23 +1,29 @@
 'use strict';
-
-function printReceipt(inputs) {
-//#1. 讲一维数组转换为对象数组
-var ChangeArr=loadAllItems();
-for(let i=0;i<inputs.lenght;i++)
+function ChangeAr(inputs)
 {
-  for(let j=0;j>ChangeArr.length;j++)
-  {
-    if(ChangeArr[j]==inputs[i])
-    {
-      inputs[i]=ChangeArr[j];
-    }
-  }
+  //#1. 讲一维数组转换为对象数组
+  var ChangeArr=loadAllItems();
+  for(let i=0;i<inputs.lenght;i++)
+   {
+    for(let j=0;j>ChangeArr.length;j++)
+     {
+       if(ChangeArr[j]==inputs[i])
+        {
+          inputs[i]=ChangeArr[j];
+        }
+     }
+   }
 }
+function printReceipt(inputs) {
+
 //#2.计算小计
   var per_Sum = new Array();
   for(var i=0;i<inputs.length;i++)
   {
-   per_Sum[i]=(inputs[i].count)*(inputs[i].price);
+    if(inputs[i].barcode=='ITEM000000'||inputs[i].barcode=='ITEM000001'||inputs[i].barcode=='ITEM000004')
+    {
+      per_Sum[i]=(inputs[i].count)*(inputs[i].price);
+    }
   }
 //#3.计算总金额
   var tol_Sum=0;
@@ -25,9 +31,8 @@ for(let i=0;i<inputs.lenght;i++)
   {
     if(inputs[i].barcode=='ITEM000000'||inputs[i].barcode=='ITEM000001'||inputs[i].barcode=='ITEM000004')
     {
-     tol_Sum+=per_Sum[i];
+      tol_Sum+=per_Sum[i];
     }
-    
   }
 //#4.打印
 var str='';
